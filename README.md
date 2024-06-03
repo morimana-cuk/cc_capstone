@@ -6,3 +6,9 @@ jangan lupa DB harus sudah tersedia
 db name = capstone
 
 pake laragon kalo mau enak 
+list route 
+/login
+/register
+/update_password
+/laporan/all
+/laporan/filter/{kota}/{kecamatan}/{desa?}
