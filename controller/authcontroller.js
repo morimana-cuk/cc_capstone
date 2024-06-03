@@ -9,13 +9,13 @@ const login = async (request, h) =>{
         const user = await User.findOne({where:{email:email}})
     if (!user) {
         return h.response({
-            message:"invalid email or password"
+            message:"email salah atau tidak ditemukan"
         }).code(401)
     }
     const isvalid = await Bcrypt.compare(password, user.password)
     if (!isvalid) {
         return h.response({
-            message:"invalid email or password"
+            message:"password salah"
         }).code(401)
     }
 
@@ -37,13 +37,13 @@ const login = async (request, h) =>{
     
 }
 
-
 const register = async(request, h)=>{
     const { email,username, password} = request.payload;
     try {
         const existinguser =await User.findOne({where:{email}})
     if (existinguser) {
         return h.response({
+            message:console.log(existinguser),
             message:"email sudah terdaftar"
         }).code(400)
     }
@@ -80,4 +80,39 @@ const register = async(request, h)=>{
     }
     
 }
-module.exports = {login, register}
+
+const update_password = async(request, h)=>{
+    const {email, old_password, new_password } = request.payload
+    try {
+        const user = await User.findOne({where:{email}})
+        if (!user) {
+            return h.response({
+                status:false,
+                message:"email tidak ditemukan"
+            }).code(400)
+        }
+        const isPasswordValid = await Bcrypt.compare(old_password, user.password)
+        if (!isPasswordValid) {
+            return h.response({
+                status:false,
+                message:"Password lama tidak valid"
+            }).code(400)
+        }
+
+        const hashedPassword = await Bcrypt.hash(new_password, 12)
+        user.password = hashedPassword
+        await user.save()
+        return h.response({
+            status:true,
+            message:"password berhasil diubah"
+        }).code(200)
+    } catch (error) {
+       console.log('error saat menghapus password', error)
+       return h.response({
+        status:false,
+        message:"terjadi kesalahan pada server"
+       }).code(500)
+    }
+}
+
+module.exports = {login, register, update_password}
