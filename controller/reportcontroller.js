@@ -1,6 +1,5 @@
 const {User} = require('../models/user')
 const {Laporan} = require('../models/laporan')
-const { Op } = require('sequelize');
 
 
 const GetAllReport  = async (request, h)=>{
@@ -22,6 +21,34 @@ const GetAllReport  = async (request, h)=>{
         }).code(500);
     }
 }
+
+// const GetFilteredReports = async(request,h)=>{
+// try {
+//     const {kota,kecamatan,desa} = request.params
+
+//     let filter = {}
+//     if(kota)filter.kota =kota
+//     if(kecamatan)filter.kecamatan=kecamatan
+//     if (desa)filter.desa = desa
+
+//     const report = filter 
+//     ? await Laporan.findAll({where:filter, status:'rusak' })
+//     :await Laporan.findAll({where:{status:'rusak'}})
+//     return h.response({
+//         status:true,
+//         message:'berhasil',
+//         data:report
+//     }).code(200)
+// } catch (error) {
+//     console.log('error saat sedang mengambil laporan dengna filter ', error)
+//     return h.response({
+//         status:false,
+//         message:'gagal',
+//     }).code(500)
+// }
+
+
+// }
 
 // const GetFilteredReports = async (request, h) => {
 //     try {
@@ -151,9 +178,5 @@ const GetFilteredReports = async (request, h) => { // Deklarasi fungsi asinkron 
         }).code(500); // Menggunakan kode status 500 untuk Internal Server Error
     }
 };
-
-
-
-
 
 module.exports = {GetAllReport, GetFilteredReports}

@@ -1,7 +1,7 @@
 const Joi = require("joi/lib")
 const {login, register, forget_password, update_password} = require('../controller/authcontroller') 
 const { validate } = require("uuid")
-const { GetAllReport,  GetFilteredReportsKecamatan, GetFilteredReportsDesa, GetFilteredReportsKota, GetFilteredReports } = require("../controller/reportcontroller")
+const { GetAllReport,  GetFilteredReports } = require("../controller/reportcontroller")
 
 const routes =[
     {
@@ -49,8 +49,12 @@ const routes =[
         method: 'GET',
         path: '/laporan/all',
         handler: GetAllReport,
-        
     },
+    // {
+    //     method:'GET',
+    //     path:'/laporan/filter/{kota}/{kecamatan}/{desa?}',
+    //     handler: GetFilteredReports,
+    // }
     {
         method:'GET',
         path:'/laporan/filter/{type}/{value}',
