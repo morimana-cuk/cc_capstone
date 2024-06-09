@@ -50,11 +50,36 @@ const routes =[
         path: '/laporan/all',
         handler: GetAllReport,
     },
+    // {
+    //     method:'GET',
+    //     path:'/laporan/filter/{kota}/{kecamatan}/{desa?}',
+    //     handler: GetFilteredReports,
+    // }
     {
         method:'GET',
-        path:'/laporan/filter/{kota}/{kecamatan}/{desa?}',
+        path:'/laporan/filter/{type}/{value}',
         handler: GetFilteredReports,
-    }
+    },
+    // {
+    //     method:'GET', 
+    //     path:'/laporan/filter/kota/{kota}',
+    //     handler:GetFilteredReportsKota,
+    // },
+    // {
+    //     method:'GET',
+    //     path:'/laporan/filter/kecamatan/{kecamatan}',
+    //     handler:GetFilteredReportsKecamatan,
+    // },
+    // {
+    //     method:'GET',
+    //     path:'/laporan/filter/desa/{desa}',
+    //     handler:GetFilteredReportsDesa,
+    // }
+    // {
+    //     method:'GET',
+    //     path:'/laporan/filter/{desa}',
+    //     handler:,
+    // }
     
 ]
 

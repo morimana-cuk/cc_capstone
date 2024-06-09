@@ -54,7 +54,7 @@ const Laporan = sequelize.define("laporan", {
         allowNull:false
     },
     status:{
-        type:DataTypes.ENUM('diperbaiki','rusak'),
+        type:DataTypes.ENUM('diperbaiki','sedang_diperbaiki','rusak'),
         defaultValue:'rusak',
         allowNull:false
     }
