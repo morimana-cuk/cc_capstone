@@ -27,26 +27,40 @@ async function PrediksiKlasifikasi(model, imageBuffer) {
 
     // Perform prediction using executeAsync
     const prediction = await model.executeAsync(tensor);
-    const score = await prediction[0].dataSync();
+    console.log(prediction)
+    // const score1 = await prediction[0].dataSync();
+    const score2 = await prediction[1].dataSync();
+    // const score3 = await prediction[2].dataSync();
+    // const score5 = await prediction[5].dataSync();
+    const score6 = await prediction[6].dataSync();
+    // console.log('index ke 5')
+    // console.log(score5)
+    console.log('index ke 7 adalah nilai label')
+    console.log(score6)
 
-    const classes = ['lubang','tamabalan','retak']
+    // console.log(score1)
+    console.log('confidance score',score2)
+    // console.log(score3)
 
-    const maxscore = Math.max(...score)
-    const maxIndex = score.indexOf(maxscore) 
-    const confidenceScore = maxscore * 100 
+    const classes = ['','lubang','retak','tambalan']
+
+    // const maxscore = Math.max(...score6)
+
+    const maxIndex = score6[0] 
+    const confidenceScore = score2[0] * 100 
     const label = classes[maxIndex]  
     // Debugging: Log scores
     
     // Find the index of the maximum score
     
     // Debugging: Log label and confidence score
-    console.log('Scores:', score);
-    console.log("max score",maxscore)
+    // console.log('Scores:', score);
+    // console.log("max score",maxscore)
     console.log('Max Index:', maxIndex);
     console.log('Label:', label);
     console.log('Confidence Score:', confidenceScore);
 
-    return { confidenceScore, label };
+    return  label ;
 }
 
 module.exports = PrediksiKlasifikasi;
