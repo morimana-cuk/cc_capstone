@@ -2,6 +2,7 @@ const Joi = require("joi/lib")
 const {login, register, forget_password, update_password} = require('../controller/authcontroller') 
 const { validate } = require("uuid")
 const { GetAllReport,  GetFilteredReports } = require("../controller/reportcontroller")
+const upload_laporan = require("../controller/upload_imagecontroller")
 
 const routes =[
     {
@@ -50,16 +51,29 @@ const routes =[
         path: '/laporan/all',
         handler: GetAllReport,
     },
-    // {
-    //     method:'GET',
-    //     path:'/laporan/filter/{kota}/{kecamatan}/{desa?}',
-    //     handler: GetFilteredReports,
-    // }
     {
         method:'GET',
         path:'/laporan/filter/{type}/{value}',
         handler: GetFilteredReports,
     },
+    {
+        method:'POST',
+        path:'/upload',
+        handler:upload_laporan,
+        options:{
+            payload:{
+                output: 'stream',
+                parse: true,
+                allow: 'multipart/form-data',
+                maxBytes: 10 * 1024 * 1024, // 10MB
+            }
+        }
+    }
+     // {
+    //     method:'GET',
+    //     path:'/laporan/filter/{kota}/{kecamatan}/{desa?}',
+    //     handler: GetFilteredReports,
+    // },
     // {
     //     method:'GET', 
     //     path:'/laporan/filter/kota/{kota}',
