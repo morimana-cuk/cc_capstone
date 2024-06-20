@@ -5,6 +5,7 @@ baru npm start<br>
 jangan lupa DB harus sudah tersedia<br>
 db name = capstone<br>
 
+route<br>
 /laporan/filter/{type}/{value}<br>
 type ini isi nya kota, desa, kecamatan<br>
 value nama wilayah<br>
