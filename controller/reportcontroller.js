@@ -6,12 +6,30 @@ const GetAllReport  = async (request, h)=>{
     try {
         const AllReport = await Laporan.findAll({ 
             where: { status: 'rusak' }, 
-            include: [{ model: User, attributes: ['nama_user'] }] 
+            include: { model: User, attributes: ['nama_user'] } 
+        });
+        const formattedReports = AllReport.map(report => {
+            return {
+                id_laporan: report.id_laporan,
+                id_user: report.id_user,
+                tanggal: report.tanggal,
+                kota: report.kota,
+                desa: report.desa,
+                kecamatan: report.kecamatan,
+                nama_jalan: report.nama_jalan,
+                keterangan_user: report.keterangan_user,
+                path_foto_laporan: report.path_foto_laporan,
+                longitude: report.longitude,
+                latitude: report.latitude,
+                status: report.status,
+                keterangan_ml: report.keterangan_ml,
+                user: report.user.nama_user  // Flatten the user object
+            }
         });
         return h.response({
             status: true,
             message: "berhasil",
-            data: AllReport
+            data: formattedReports
         }).code(200);
     } catch (error) {
         console.log('error saat mengambil semua data', error);

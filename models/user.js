@@ -30,6 +30,10 @@ const User = sequelize.define('user',{
             len:[5, 100]
         }
     },
+    path_foto_profil:{
+        type:DataTypes.STRING,
+        allowNull:true,
+    }
    
 }, {
     // Konfigurasikan opsi tambahan

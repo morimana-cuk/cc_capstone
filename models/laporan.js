@@ -37,7 +37,7 @@ const Laporan = sequelize.define("laporan", {
         type:DataTypes.STRING,
         allowNull:false
     },
-    keterangan:{
+    keterangan_user:{
         type:DataTypes.STRING,
         allowNull:true
     },
@@ -57,6 +57,10 @@ const Laporan = sequelize.define("laporan", {
         type:DataTypes.ENUM('sudah_perbaiki','sedang_diperbaiki','rusak'),
         defaultValue:'rusak',
         allowNull:false
+    },
+    keterangan_ml:{
+        type:DataTypes.STRING,
+        allowNull:true
     }
 },{
         // Konfigurasikan opsi tambahan
