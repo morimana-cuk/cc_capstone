@@ -42,7 +42,7 @@ async function PrediksiKlasifikasi(model, imageBuffer) {
     console.log('confidance score',score2)
     // console.log(score3)
 
-    const classes = ['','lubang','retak','tambalan']
+    const classes = ['unknown','lubang','retak','tambalan']
 
     // const maxscore = Math.max(...score6)
 

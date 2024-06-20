@@ -1,7 +1,7 @@
 const Joi = require("joi/lib")
 const {login, register, forget_password, update_password} = require('../controller/authcontroller') 
 const { validate } = require("uuid")
-const { GetAllReport,  GetFilteredReports } = require("../controller/reportcontroller")
+const { GetAllReport,  GetFilteredReports, UpdateStatusReport } = require("../controller/reportcontroller")
 const upload_laporan = require("../controller/upload_imagecontroller")
 
 const routes =[
@@ -68,6 +68,11 @@ const routes =[
                 maxBytes: 10 * 1024 * 1024, // 10MB
             }
         }
+    },
+    {
+        method:"POST",
+        path:"/UpdateStatus",
+        handler:UpdateStatusReport
     }
      // {
     //     method:'GET',
