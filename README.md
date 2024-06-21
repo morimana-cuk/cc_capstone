@@ -1,5 +1,8 @@
 link cloud run:<br>
 https://capstone-sv67gbtaea-et.a.run.app<br>
+contoh<br>
+https://capstone-sv67gbtaea-et.a.run.app/login<br>
+
 
 setalah di clone atau di pull<br>
 npm install dulu(khusus fresh project)<br>
