@@ -6,7 +6,10 @@ const GetAllReport  = async (request, h)=>{
     try {
         const AllReport = await Laporan.findAll({ 
             where: { status: 'rusak' }, 
-            include: { model: User, attributes: ['nama_user'] } 
+            include: { model: User, attributes: ['nama_user'] } ,
+            order: [
+                ['tanggal', 'DESC'] // Contoh pengurutan berdasarkan kolom 'tanggal' secara descending
+            ]
         });
         const formattedReports = AllReport.map(report => {
             return {
